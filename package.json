@@ -1,0 +1,31 @@
+{
+  "name": "blog-backend",
+  "version": "1.0.0",
+  "description": "demo blog backend for full stack open course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AustinKong/blog-server.git"
+  },
+  "author": "austin kong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AustinKong/blog-server/issues"
+  },
+  "homepage": "https://github.com/AustinKong/blog-server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "nodemon": "^3.0.2"
+  }
+}

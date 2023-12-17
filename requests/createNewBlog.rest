@@ -1,0 +1,9 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "title": "Developing full stack",
+  "author": "John Doe",
+  "url": "Unknown",
+  "likes": 100
+}
