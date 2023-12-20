@@ -1,29 +1,39 @@
 const blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
+const User = require('../models/user')
 
 blogsRouter.get('/', async (request, response) => {
-  const res = await Blog.find({})
-  response.json(res)
+  const blogs = await Blog.find({}).populate('user')
+  response.json(blogs)
 })
 
 blogsRouter.get('/:id', async (request, response) => {
-  const res = await Blog.findById(request.params.id)
-  response.json(res)
+  const blog = await Blog.findById(request.params.id)
+  response.json(blog)
 })
 
+// Create a new blog
 blogsRouter.post('/', async (request, response) => {
-  // If likes is missing, default to 0
-  if (!request.body.likes) {
-    request.body.likes = 0
-  }
+  const body = request.body
   // If title or url is missing, 400 bad request
-  if (!request.body.title || ! request.body.url) {
+  if (!body.title || ! body.url) {
     return response.status(400).json({ error: 'missing title/url property' })
   }
 
-  const blog = new Blog(request.body)
-  const res = await blog.save()
-  response.status(201).json(res)
+  const randomUser = (await User.find({}))[0]
+
+  const blog = new Blog({
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes ? body.likes : 0,
+    user: randomUser.id
+  })
+  let savedBlog = await blog.save()
+  randomUser.blogs = randomUser.blogs.concat(savedBlog.id)
+  await randomUser.save()
+
+  response.status(201).json(savedBlog)
 })
 
 blogsRouter.delete('/:id', async (request, response) => {
