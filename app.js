@@ -8,12 +8,12 @@ const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const config = require('./utils/config')
 const logger = require('./utils/logger')
-const extractToken = require('./utils/extract_token')
+const tokenExtractor = require('./utils/token_extractor')
 const errorHandler = require('./utils/error_handler')
 
 app.use(cors())
 app.use(express.json())
-app.use(extractToken)
+app.use(tokenExtractor)
 
 const url = config.MONGODB_URI
 logger.info('Connecting to MongoDB ...')

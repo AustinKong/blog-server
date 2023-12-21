@@ -1,27 +1,9 @@
 const supertest = require('supertest')
 const app = require('../app')
-const User = require('../models/user')
+const helper = require('./test_helper')
 const mongoose = require('mongoose')
 
 const api = supertest(app)
-
-const users = [
-  {
-    name: 'Abu Bakar',
-    username: 'AbuB',
-    password: 'ABBasdf'
-  },
-  {
-    name: 'Clark Kent',
-    username: 'ClaKent',
-    password: '12345'
-  },
-  {
-    name: 'Peter Parker',
-    username: 'PPark',
-    password: 'Peter pakk'
-  }
-]
 
 describe('POST request creating a new user', () => {
   const userDetails = {
@@ -41,7 +23,7 @@ describe('POST request creating a new user', () => {
     expect(res.body._id).not.toBeDefined()
 
     const response = await api.get('/api/users')
-    expect(response.body).toHaveLength(users.length + 1)
+    expect(response.body).toHaveLength(4)
     expect(response.body.map(user => user.name)).toContain(userDetails.name)
   })
 
@@ -81,13 +63,7 @@ describe('POST request creating a new user', () => {
 })
 
 // Reset before each test
-beforeEach(async () => {
-  await User.deleteMany({})
-  for (let user of users) {
-    let userObject = new User(user)
-    await userObject.save()
-  }
-})
+beforeEach(async () => helper.resetAll())
 
 afterAll(async () => {
   await mongoose.connection.close()

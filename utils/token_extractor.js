@@ -1,4 +1,4 @@
-const extractToken = (request, response, next) => {
+const tokenExtractor = (request, response, next) => {
   let authorization = request.get('authorization')
   if (authorization && authorization.startsWith('Bearer ')) {
     request.token = authorization.replace('Bearer ', '')
@@ -6,4 +6,4 @@ const extractToken = (request, response, next) => {
   next()
 }
 
-module.exports = extractToken
+module.exports = tokenExtractor

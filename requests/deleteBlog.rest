@@ -1,9 +1,2 @@
-POST http://localhost:3001/api/blogs
-Content-Type: application/json
+DELETE http://localhost:3001/api/blogs/6583ea520a66726a6faecb0d
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvaG5EIiwiaWQiOiI2NTgzZWE0MTBhNjY3MjZhNmZhZWNiMDciLCJpYXQiOjE3MDMxNDQwMDN9.uCl6WM16xbXFmm0MJb7D6Q9F7Tx_x6X22PznQA7SGME
-
-{
-  "title": "Developing full stack",
-  "url": "Unknown",
-  "likes": 100
-}
