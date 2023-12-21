@@ -1,5 +1,6 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvaG5EIiwiaWQiOiI2NTgzYjQxZWE0ODMyYjc3M2RhNDcxOTkiLCJpYXQiOjE3MDMxMzA0NzV9.UnkR7HwRdq2BFTKNlXHNpWTg6VPr1aU7b-veSbe9DTU 
 
 {
   "title": "Developing full stack",
